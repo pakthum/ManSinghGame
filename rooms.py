@@ -143,7 +143,24 @@ def instantiate_puzzles(rooms):
         solution="reflection",
         reward=bronze_key
     )
+    rooms["great_hall_north"].add_puzzle(mirror_riddle)
 
+
+    silver_key = Key("Silver Key", opens_location="The Laxmi Villas")
+    banquet_puzzle = Puzzle(
+        description="Banquet Seating: Unscramble the letters 'AJAR' to find the word the grants you entry.",
+        solution="raja",
+        reward=silver_key
+    )
+    rooms["dining_complex"].add_puzzle(banquet_puzzle)
+
+    gold_key = Key("Gold Key", opens_location="The Ramharihar Temple")
+    tile_puzzle = Puzzle(
+        description="Ceremonial Tiles: Among these tiles, one bears the lotus: name it to earn your prize.",
+        solution="lotus",
+        reward=gold_key
+    )
+    rooms["laxmi_villas"].add_puzzle(tile_puzzle)
 
 
 
