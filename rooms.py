@@ -161,12 +161,3 @@ def instantiate_puzzles(rooms):
         reward=gold_key
     )
     rooms["laxmi_villas"].add_puzzle(tile_puzzle)
-
-
-
-    # 3) (Later) add puzzles & items here, e.g.
-    # puzzle = Puzzle("Riddle …", "answer", Key("Silver Key", "The Library"))
-    # great_hall_north.add_puzzle(puzzle)
-
-    # 4) Return your entry point (and any others you need)
-    return great_hall
