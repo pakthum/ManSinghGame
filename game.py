@@ -13,9 +13,6 @@ Commands:
     quit
 """)
 
-
-
-
 def main():
     rooms = initialize_rooms()
     instantiate_puzzles(rooms)
@@ -23,7 +20,7 @@ def main():
     name = input("Enter your name: ").strip() or "Adventurer"
     player = Character(name=name, starting_room=rooms["great_hall"])
 
-    print(f"Welcome, {player.name}! Type 'help' for a list of commands.")
+    print(f"\nMan Singh was a military commander in the Mughal Empire during the late 16th century, under King Akbar. Whilst undergoing a campaign tasked with bringing modern day Afghanistan under Mughal rule, Man Singh inadvertently acquired large amounts of wealth in gold, which he brought back to India and hid somewhere in the Jaigarh Fort complex - the treasure has never been found to this day.\n\nYou, {player.name}, are a famed treasure hunter, who has travelled the world, discovering some of the most valuable and lucrative treasures to ever be found.\n\nThis time around, you are searching for Man Singh's Lost Treasure, hidden somewhere within Jaigarh Fort. Do you have what it takes to find it?\nType 'help' for a list of commands.")
     player.current_room.describe()
 
     while True:
