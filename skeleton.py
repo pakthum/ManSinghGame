@@ -13,14 +13,14 @@ class Room:
         else:
             print(f"\nYou are in {self.name}. {self.description}")
         if self.exits:
-            print("Exits:", ", ".join(self.exits.keys()))
+            print("\nExits:", ", ".join(self.exits.keys()))
         if self.items:
-            print("You see the following items:", ", ".join(item.name for item in self.items))
+            print("\nYou see the following items:", ", ".join(item.name for item in self.items))
         unsolved = [p for p in self.puzzles if not p.solved]
         if unsolved:
-            print("There's a puzzle here waiting to be solved.")
+            print("\nThere's a puzzle here waiting to be solved.")
             for p in unsolved:
-                print(" •", p.description)
+                print(f"\n •{p.description}")
 
     def add_exit(self, direction, room):
         self.exits[direction] = room
@@ -34,25 +34,29 @@ class Room:
     def unlock(self, key):
         if key.opens_location == self.name:
             self.locked = False
-            print(f"\n\nThe {self.name} is now unlocked.")
+            if self.name == "The Laxmi Villas":
+                print(f"\n\n{self.name} are now unlocked.")
+            else:
+                print(f"\n\n{self.name} is now unlocked.")
         else:
-            print("\n\nThat key doesn't fit here.")
+            print("\n\nThat key doesn't fit here!")
 
 
 class Puzzle:
-    def __init__(self, description, solution, reward):
+    def __init__(self, description, solution, reward, hint=None):
         self.description = description
         self.solution = solution
         self.reward = reward    # Key object to give upon solving
+        self.hint = hint
         self.solved = False
 
     def attempt(self, answer, player):
         if answer.strip().lower() == self.solution.lower():
             self.solved = True
             player.add_item(self.reward)
-            print(f"Congratulations! You received: {self.reward.name}.")
+            print(f"\nCongratulations! You received: {self.reward.name}.")
         else:
-            print("That's not correct. Try again.")
+            print("\nThat's not correct. Try again.")
 
 
 class Key:
@@ -71,22 +75,22 @@ class Character:
         if direction in self.current_room.exits:
             next_room = self.current_room.exits[direction]
             if next_room is None:
-                print("You can't go that way.")
+                print("\nYou can't go that way.")
             elif next_room.locked:
-                print("The door is locked. You need a key to enter.")
+                print("\nThe door is locked. You need a key to enter.")
             else:
                 self.current_room = next_room
                 self.current_room.describe()
         else:
-            print("You can't go that way.")
+            print("\nYou can't go that way.")
 
     def add_item(self, item):
         self.inventory.append(item)
-        print(f"{item.name} added to your inventory.")
+        print(f"\n{item.name} added to your inventory.")
 
     def show_inventory(self):
         print("\nInventory:")
         if not self.inventory:
-            print("  (empty)")
+            print("\n  (empty)")
         for item in self.inventory:
-            print(f"- {item.name}")
+            print(f"\n- {item.name}")
